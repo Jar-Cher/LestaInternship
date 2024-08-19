@@ -1,5 +1,7 @@
-import random
+import abc
+import collections
 import copy
+import random
 
 
 # Task 1
@@ -39,7 +41,105 @@ def test_even():
 # На языке Python написать минимум по 2 класса реализовывающих циклический буфер FIFO.
 # Объяснить плюсы и минусы каждой реализации.
 
-#class buffer1():
+# Абстрактный базовый класс, на всякий случай.
+class CustomBuffer(abc.ABC):
+    @abc.abstractmethod
+    def __init__(self, size):
+        self._size = size
+
+    @abc.abstractmethod
+    def append(self, element):
+        pass
+
+    @abc.abstractmethod
+    def pop(self):
+        pass
+
+    @abc.abstractmethod
+    def get_buffer(self):
+        pass
+
+# Реализация №1
+# В основе - список.
+# Достоинства в отличие от реализации №2:
+# 1. Можно достучаться до уже "удалённых", но ещё не затёртых элементов;
+# 2. Длину списка изменить проще, чем read-only deque.maxlen.
+# Недостаток - сложность кода.
+class Buffer1(CustomBuffer):
+    def __init__(self, size):
+        super().__init__(size)
+        self.__list = [None] * size
+        # Индекс элемента, в который будет вставлен новый элемент
+        self.__index_add = 0
+        # Индекс элемента, который будет выделен из
+        self.__index_pop = 0
+        self.__elements_stored = 0
+
+    def append(self, element):
+        self.__list[self.__index_add] = element
+        if self.__elements_stored == self._size:
+            self.__index_pop = (self.__index_pop + 1) % self._size
+        else:
+            self.__elements_stored = self.__elements_stored + 1
+        self.__index_add = (self.__index_add + 1) % self._size
+
+    def pop(self):
+        if self.__elements_stored == 0:
+            raise IndexError
+        self.__elements_stored = self.__elements_stored - 1
+        element = self.__list[self.__index_pop]
+        self.__index_pop = (self.__index_pop + 1) % self._size
+        return element
+
+    def get_buffer(self):
+        return [self.__list[(i + self.__index_pop) % self._size] for i in range(self.__elements_stored)]
+
+# Реализация №2
+# Обёртка вокруг deque. Достоинства решения:
+# 1. Не изобретаем велосипед;
+# 2. Можно просто обернуть прочие методы deque и, например, реализовать LIFO.
+# Недостаток - свойственная deque большая трата памяти.
+class Buffer2(CustomBuffer):
+    def __init__(self, size):
+        super().__init__(size)
+        self.__deque = collections.deque(maxlen = size)
+
+    def append(self, element):
+        self.__deque.append(element)
+
+    def pop(self):
+        return self.__deque.popleft()
+
+    def get_buffer(self):
+        return list(self.__deque)
+
+def test_buffer():
+    test_size = random.randint(1, 42)
+    buf1 = Buffer1(test_size)
+    buf2 = Buffer2(test_size)
+    if not isinstance(buf1, CustomBuffer):
+        print("buf1 is not a CustomBuffer")
+    if not isinstance(buf2, CustomBuffer):
+        print("buf2 is not a CustomBuffer")
+    for i in range(283):
+        if random.random() < 0.7:
+            test_additive = random.randint(1, 42)
+            buf1.append(test_additive)
+            buf2.append(test_additive)
+        else:
+            try:
+                pop1 = buf1.pop()
+            except IndexError:
+                pop1 = None
+            try:
+                pop2 = buf2.pop()
+            except IndexError:
+                pop2 = None
+            if pop1 != pop2:
+                print("Buffer1 popped " + str(pop1) + ", but Buffer2 popped " + str(pop2))
+        if buf1.get_buffer() != buf2.get_buffer():
+            print("Expected: " + str(buf1.get_buffer()) + "; Actual: " + str(buf2.get_buffer()))
+    print("All buffer tests done")
 
 
 # Task 3
@@ -48,50 +148,55 @@ def test_even():
 # Среднее время - O(n*log(n))
 # Лучшее время - O(n*log(n))
 # array - сортируемый список, floor - индекс начального элемента, ceil - индекс последнего элемента
-# floor и ceil указывают сортируемую часть списка array
-def sort(array, floor, ceil):
+# floor и ceil указывают сортируемую часть списка list
+def sort(list, floor, ceil):
     dif = ceil - floor
     # Пустой/одноэлементный список не сортируем.
     if dif < 2:
         return
     # Список из двух элементов можно отсортировать здесь и сейчас.
     if dif == 2:
-        if array[floor] > array[ceil - 1]:
-            swap(array, floor, ceil - 1)
+        if list[floor] > list[ceil - 1]:
+            swap(list, floor, ceil - 1)
             return
     # Вычисляем опорное значение - среднее арифметическое первого, центрального и последнего элементов списка.
-    mid = (array[floor] + array[(floor + ceil) // 2] + array[ceil - 1]) // 3
+    mid = (list[floor] + list[(floor + ceil) // 2] + list[ceil - 1]) // 3
     j = ceil - 1
     i = floor
     # Элементы больше опорного из начала списка меняются местами с элементами меньше опорного из конца.
     while i < j:
-        if array[i] > mid:
-            while array[j] > mid and i < j:
+        if list[i] > mid:
+            while list[j] > mid and i < j:
                 j = j - 1
-            swap(array, i, j)
+            swap(list, i, j)
         i = i + 1
-    # array[j] - опорный элемент. Таким образом:
-    # все элементы с меньшими индексами - не большего array[j];
-    # все элементы с большими индексами - не меньшего array[j].
+    # list[j] - опорный элемент. Таким образом:
+    # все элементы с меньшими индексами - не большего list[j];
+    # все элементы с большими индексами - не меньшего list[j].
     # Далее, рекурсивно сортируем два подсписка относительно опорного элемента.
-    sort(array, floor, j)
-    sort(array, j, ceil)
+    sort(list, floor, j)
+    sort(list, j, ceil)
 
-def swap(array, first, second):
-    array[first], array[second] = array[second], array[first]
+def swap(list, first, second):
+    list[first], list[second] = list[second], list[first]
 
 def test_sort():
+    list_original = [-1, 100, 42, 134, 9000, 100500, 64, -5, 4]
+    sort(list_original, 0, len(list_original))
+    if list_original != [-5, -1, 4, 42, 64, 100, 134, 9000, 100500]:
+        print("Expected: [-5, -1, 4, 42, 64, 100, 134, 9000, 100500]; Actual: " + str(list_original))
     for i in range(42):
-        array_original = random.choices(range(42), k = 42)
-        array_control = copy.deepcopy(array_original)
-        array_control.sort()
-        sort(array_original, 0, len(array_original))
-        if array_control != array_original:
-            print("Expected: " + array_control + "; Actual: " + array_original + "; Original")
+        list_original = random.choices(range(random.randint(1, 1000)), k = 42)
+        list_control = copy.deepcopy(list_original)
+        list_control.sort()
+        sort(list_original, 0, len(list_original))
+        if list_control != list_original:
+            print("Expected: " + list_control + "; Actual: " + list_original)
     print("All sort tests done")
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     test_even()
+    test_buffer()
     test_sort()
