@@ -3,6 +3,7 @@ from random import choices, randint, random
 from Task1 import is_even, is_even_custom
 from Task2 import CustomBuffer, Buffer1, Buffer2
 from Task3 import sort
+import time
 import unittest
 
 
@@ -17,27 +18,39 @@ class Test(unittest.TestCase):
         print("All even tests done")
 
     def test_buffer(self):
+        tests_count = 1000500
         test_size = randint(1, 42)
         buf1 = Buffer1(test_size)
         buf2 = Buffer2(test_size)
         self.assertIsInstance(buf1, CustomBuffer)
         self.assertIsInstance(buf2, CustomBuffer)
-        for i in range(283):
-            if random() < 0.7:
-                test_additive = randint(1, 42)
-                buf1.append(test_additive)
-                buf2.append(test_additive)
+        test_codes = [ random() for i in range(tests_count)]
+        test_additives = [ randint(-42, 42) for i in range(tests_count)]
+        pops1 = []
+        start = time.time()
+        for i in range(tests_count):
+            if test_codes[i] < 0.7:
+                buf1.append(test_additives[i])
             else:
                 try:
-                    pop1 = buf1.pop()
+                    pops1.append(buf1.pop())
                 except IndexError:
-                    pop1 = None
+                    pops1.append(None)
+        print("Buffer1 took " + str(time.time() - start) + " ms")
+        pops2 = []
+        start = time.time()
+        for i in range(tests_count):
+            if test_codes[i] < 0.7:
+                buf2.append(test_additives[i])
+            else:
                 try:
-                    pop2 = buf2.pop()
+                    pops2.append(buf2.pop())
                 except IndexError:
-                    pop2 = None
-                self.assertEqual(pop1, pop2)
-            self.assertEqual(buf1.get_buffer(), buf2.get_buffer())
+                    pops2.append(None)
+        # deque заточен под операции, меняющие его длину -> реализация №2 более быстрая.
+        print("Buffer2 took " + str(time.time() - start) + " ms")
+        self.assertEqual(pops1, pops2)
+        self.assertEqual(buf1.get_buffer(), buf2.get_buffer())
         print("All buffer tests done")
 
     def test_sort(self):

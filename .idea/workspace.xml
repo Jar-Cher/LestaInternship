@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67f1eb01-4a08-422d-9fa6-ab5a6d7cd119" name="Changes" comment="+ task 3 test &amp; task 2 &amp; task 2 test">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="67f1eb01-4a08-422d-9fa6-ab5a6d7cd119" name="Changes" comment="+ split into separate files, unittest, import refactor">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Python Unit Test" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,12 +48,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.main.executor": "Debug",
+    "Python tests.Python tests for Test.MyTestCase.executor": "Run",
+    "Python tests.Python tests for Test.MyTestCase.test_buffer.executor": "Run",
+    "Python tests.Python tests for Test.MyTestCase.test_sort.executor": "Run",
+    "Python tests.Python tests for Test.Test.executor": "Run",
+    "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Python tests for Test.Test">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="LestaInternship" />
       <option name="ENV_FILES" value="" />
@@ -66,6 +80,74 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for Test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LestaInternship" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LestaInternship" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LestaInternship" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test.Test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LestaInternship" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test.Test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for Test.Test" />
+        <item itemvalue="Python tests.Python tests for Test" />
+        <item itemvalue="Python tests.Python tests for Test" />
+        <item itemvalue="Python tests.Python tests for Test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -115,7 +197,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724068946293</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="+ refactor">
+      <option name="closed" value="true" />
+      <created>1724069423370</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724069423370</updated>
+    </task>
+    <task id="LOCAL-00006" summary="+ split into separate files, unittest, import refactor">
+      <option name="closed" value="true" />
+      <created>1724071695253</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724071695253</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,6 +232,8 @@
     <MESSAGE value="+ More task 1 tests &amp; comments" />
     <MESSAGE value="+ task 3 &amp; tests &amp; refactor" />
     <MESSAGE value="+ task 3 test &amp; task 2 &amp; task 2 test" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ task 3 test &amp; task 2 &amp; task 2 test" />
+    <MESSAGE value="+ refactor" />
+    <MESSAGE value="+ split into separate files, unittest, import refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ split into separate files, unittest, import refactor" />
   </component>
 </project>
