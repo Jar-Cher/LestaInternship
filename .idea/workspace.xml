@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67f1eb01-4a08-422d-9fa6-ab5a6d7cd119" name="Changes" comment="+ task 3 &amp; tests &amp; refactor">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="67f1eb01-4a08-422d-9fa6-ab5a6d7cd119" name="Changes" comment="+ task 3 test &amp; task 2 &amp; task 2 test">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +38,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.main.executor": "Run",
+    "Python.main.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master"
   }
@@ -108,7 +107,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724010319140</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="+ task 3 test &amp; task 2 &amp; task 2 test">
+      <option name="closed" value="true" />
+      <created>1724068946293</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724068946293</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +133,7 @@
     <MESSAGE value="+ Task 1" />
     <MESSAGE value="+ More task 1 tests &amp; comments" />
     <MESSAGE value="+ task 3 &amp; tests &amp; refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ task 3 &amp; tests &amp; refactor" />
+    <MESSAGE value="+ task 3 test &amp; task 2 &amp; task 2 test" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ task 3 test &amp; task 2 &amp; task 2 test" />
   </component>
 </project>

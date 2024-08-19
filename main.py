@@ -71,7 +71,7 @@ class Buffer1(CustomBuffer):
         self.__list = [None] * size
         # Индекс элемента, в который будет вставлен новый элемент
         self.__index_add = 0
-        # Индекс элемента, который будет выделен из
+        # Индекс элемента, который будет "удалён" из буфера
         self.__index_pop = 0
         self.__elements_stored = 0
 
@@ -80,13 +80,13 @@ class Buffer1(CustomBuffer):
         if self.__elements_stored == self._size:
             self.__index_pop = (self.__index_pop + 1) % self._size
         else:
-            self.__elements_stored = self.__elements_stored + 1
+            self.__elements_stored += 1
         self.__index_add = (self.__index_add + 1) % self._size
 
     def pop(self):
         if self.__elements_stored == 0:
             raise IndexError
-        self.__elements_stored = self.__elements_stored - 1
+        self.__elements_stored -= 1
         element = self.__list[self.__index_pop]
         self.__index_pop = (self.__index_pop + 1) % self._size
         return element
@@ -149,36 +149,36 @@ def test_buffer():
 # Лучшее время - O(n*log(n))
 # array - сортируемый список, floor - индекс начального элемента, ceil - индекс последнего элемента
 # floor и ceil указывают сортируемую часть списка list
-def sort(list, floor, ceil):
+def sort(sort_list, floor, ceil):
     dif = ceil - floor
     # Пустой/одноэлементный список не сортируем.
     if dif < 2:
         return
     # Список из двух элементов можно отсортировать здесь и сейчас.
     if dif == 2:
-        if list[floor] > list[ceil - 1]:
-            swap(list, floor, ceil - 1)
+        if sort_list[floor] > sort_list[ceil - 1]:
+            swap(sort_list, floor, ceil - 1)
             return
     # Вычисляем опорное значение - среднее арифметическое первого, центрального и последнего элементов списка.
-    mid = (list[floor] + list[(floor + ceil) // 2] + list[ceil - 1]) // 3
+    mid = (sort_list[floor] + sort_list[(floor + ceil) // 2] + sort_list[ceil - 1]) // 3
     j = ceil - 1
     i = floor
     # Элементы больше опорного из начала списка меняются местами с элементами меньше опорного из конца.
     while i < j:
-        if list[i] > mid:
-            while list[j] > mid and i < j:
-                j = j - 1
-            swap(list, i, j)
-        i = i + 1
+        if sort_list[i] > mid:
+            while sort_list[j] > mid and i < j:
+                j -= 1
+            swap(sort_list, i, j)
+        i += 1
     # list[j] - опорный элемент. Таким образом:
     # все элементы с меньшими индексами - не большего list[j];
     # все элементы с большими индексами - не меньшего list[j].
     # Далее, рекурсивно сортируем два подсписка относительно опорного элемента.
-    sort(list, floor, j)
-    sort(list, j, ceil)
+    sort(sort_list, floor, j)
+    sort(sort_list, j, ceil)
 
-def swap(list, first, second):
-    list[first], list[second] = list[second], list[first]
+def swap(swap_list, first, second):
+    swap_list[first], swap_list[second] = swap_list[second], swap_list[first]
 
 def test_sort():
     list_original = [-1, 100, 42, 134, 9000, 100500, 64, -5, 4]
